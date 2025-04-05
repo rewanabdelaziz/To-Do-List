@@ -24,6 +24,7 @@ body{
     margin: 50px auto auto auto;
     height: 100vh;
     max-width: 600px;
+    padding: 10px;
 }
 .status-header{
     width: 100%;
@@ -124,7 +125,7 @@ form button{
 /* task list */
 #task-list{
     width: 100%;
-    padding: 15px;
+    margin-top: 50px;
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -135,12 +136,18 @@ form button{
 }
 .task{
     width: 80%;
-    align-items: center;
-    gap:10px
+    /* align-items: center;
+    gap:10px; */
+    
 }
 .task input{
     width: 20px;
     height: 20px;
+    margin-right: 10px;
+}
+.task p{
+    width: calc(100% - 30px);
+    word-break: break-all;
 }
 .taskItem {
     width: 100%;
@@ -156,10 +163,32 @@ form button{
 .taskItem img{
     width: 24px;
     height: 24px;
-    margin: 0 10px;
+    margin: 0 5px;
     cursor: pointer;
 }
 .completed p{
     text-decoration: line-through;
     color: var(--teal);
+}
+@media (max-width : 640px) {
+    .taskItem img{
+        width: 15px;
+        height: 15px;
+        margin: 0 2px;
+    }
+    .task input{
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+    }
+    .task p{
+        width: calc(100% - 25px);
+    }
+    .status-header{
+        padding: 10px;
+        gap: 10px;
+    }
+    .container{
+        margin-top: 20px;
+    }
 }

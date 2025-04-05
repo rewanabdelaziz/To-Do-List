@@ -1,19 +1,23 @@
+// define the list array
+let list = [];
+
+// check local storage when DOM loaded
 document.addEventListener("DOMContentLoaded",()=>{
     const storedTasks = JSON.parse(localStorage.getItem("tasks"))
 
     if(storedTasks){
         storedTasks.forEach((task)=> list.push(task))
-        updatetaskList()
+        updateTaskList()
         updateScore()
     }
 })
 
-let list = [];
-
+// set list to the local storage
 const saveTasks = () =>{
     localStorage.setItem('tasks', JSON.stringify(list));
 }
 
+// add new task function
 function addNewTask(){
     const textInput = document.getElementById("taskInput");
     const text = textInput.value.trim();
@@ -21,51 +25,57 @@ function addNewTask(){
     if(text){
     list.push({Text: text, Done: false});
     text.value = '';
-    console.log(list);
-    updatetaskList();
+    textInput.value="";
+    // console.log(list);
+    updateTaskList();
     updateScore();
     saveTasks();
     }
     
 }
 
+// change task's Done value (completed or not) ,every change on checkbox
 const toggleTaskComplete = (i) =>{
     list[i].Done = !list[i].Done;
-    console.log(list[i])
+    // console.log(list[i])
     updateScore()
-    updatetaskList()
+    updateTaskList()
     saveTasks();
 }
 
+// delete a task
 const deleteTask = (i)=>{
     list.splice(i,1)
     updateScore()
-    updatetaskList()
+    updateTaskList()
     saveTasks();
 }
 
+// edit a task
 const editTask = (i)=>{
     const textInput = document.getElementById("taskInput");
     textInput.value=list[i].Text;
     list.splice(i,1)
-    updatetaskList()
+    updateTaskList()
     updateScore()
     saveTasks();
 }
 
+// update your score 
 const updateScore = ()=>{
-    const completedTasks = list.filter( (task) => task.Done).length;
+    const completedTasksNums = list.filter( (task) => task.Done).length;
     const totalTasks = list.length;
-    const progressVal = (completedTasks/totalTasks) *100
+    const progressVal = (completedTasksNums/totalTasks) *100
     const progressBar = document.getElementsByClassName("bar")[0]
     progressBar.style.width = `${progressVal}%`
     // console.log(progressBar.style.width)
     const score = document.getElementsByClassName("score")[0]
-    score.innerHTML = `${completedTasks} / ${totalTasks}`
+    score.innerHTML = `${completedTasksNums} / ${totalTasks}`
 }
 
-const updatetaskList = ()=>{
-    let taskList = document.getElementById("task-list");
+// update your to do list 
+const updateTaskList = ()=>{
+    let taskList = document.getElementById("task-list"); // ul in html
     taskList.innerHTML = '';
 
     list.forEach( (task,index) => {
