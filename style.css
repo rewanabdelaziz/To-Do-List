@@ -73,7 +73,7 @@ body{
     margin-top: 20px;
 }
 .bar{
-    width: 1%;
+    width: 0%;
     height: 10px;
     background-color: var(--teal);
     border-radius: 5px;
@@ -125,7 +125,7 @@ form button{
 /* task list */
 #task-list{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -170,6 +170,38 @@ form button{
     text-decoration: line-through;
     color: var(--teal);
 }
+
+/* tabs */
+.tabs{
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+.tabs button{
+    background-color: var(--purple);
+    padding: 10px;
+    border: none;
+    color: var(--text);
+    margin:0 -3px;
+    cursor: pointer;
+}
+.tabs .active{
+    background-color: var(--secondaryBackground);
+    outline: none;
+}
+#all{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#not-completed{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.hidden {
+    display: none;
+}
+
+/* media */
 @media (max-width : 640px) {
     .taskItem img{
         width: 15px;
@@ -189,6 +221,15 @@ form button{
         gap: 10px;
     }
     .container{
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+}
+@media (max-width : 640px){
+    .tabs{
+        margin-top: 30px;
+    }
+    .tabs button{
+        font-size: 12px;
+        padding: 7px;
     }
 }
